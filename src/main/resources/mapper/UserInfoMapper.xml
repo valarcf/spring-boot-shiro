@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.neo.dao.UserInfoDao">
+
+    <select id="get" resultType="com.neo.dao.UserInfoDao">
+		select `uid`,`username`,`name`,`password`,`salt`,`status` from user_Info where uid = #{value}
+	</select>
+
+    <insert id="save" parameterType="com.neo.dao.UserInfoDao" useGeneratedKeys="true" keyProperty="userId">
+		insert into user_Info
+		(
+			`username`, 
+			`name`, 
+			`password`, 
+			`salt`,
+			`status`
+		)
+		values
+		(
+			#{username}, 
+			#{name}, 
+			#{password}, 
+			#{salt},
+			#{status}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.neo.dao.UserInfoDao">
+        update user_info
+        <set>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="password != null">`password` = #{password},</if>
+            <if test="salt != null">`salt` = #{salt},</if>
+            <if test="status != null">`status` = #{status},</if>
+        </set>
+        where uid = #{userId}
+    </update>
+
+    <delete id="remove">
+		delete from user_Info where uid = #{value}
+	</delete>
+
+</mapper>

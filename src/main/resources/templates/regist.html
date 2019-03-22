@@ -1,0 +1,38 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>regist</title>
+</head>
+<body>
+<br>
+<center><h1><br></h1>
+    <br>
+    <h1>注 册 </h1>
+    <form id="myform" method="post" action="regist">
+        <strong>用户名：</strong><input type="text" name="username" size="25" maxlength="16">
+        <br><br>
+        <strong>密 码：</strong><input type="password" name="password" size="25" maxlength="16">
+        <br><br>
+        <input type="reset" value="重 置" >
+        <input type="button" value="注 册" onclick="check()"><br>
+        <a href ="/login" >返回前一页 </a>
+    </form>
+</center>
+<script type="text/javascript">
+    // 检查表单元素的值是否为空
+    function check(){
+        var myform = document.getElementById("myform");
+        for(var i=0; i<myform.length; i++ ){
+            if(myform.elements[i].value == ""){
+                alert(myform.elements[i].title + "注册信息未填写完整");
+                myform.elements[i].focus();
+                return;
+            }
+        }
+        myform.submit(); // 表单中最后input提交标签用的是button类型，首先不提交表单，在js判断表单项都不为空时 再提交表单。
+    } </script>
+</body>
+</html>
