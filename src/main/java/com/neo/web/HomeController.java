@@ -1,15 +1,25 @@
 package com.neo.web;
 
+import com.neo.model.UserInfo;
+import com.neo.sevice.UserInfoService;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private UserInfoService userInfoService;
     @RequestMapping({"/","/index"})
     public String index(){
         return"/index";
@@ -48,5 +58,22 @@ public class HomeController {
         System.out.println("------没有权限-------");
         return "403";
     }
+    @RequestMapping(value = "/regist", method = RequestMethod.POST)
+    public @ResponseBody UserInfo doregist(@RequestBody UserInfo userInfo  ) {
+        userInfo.setSalt(userInfoService.getRandomString(20));
+        byte i = 1;
+		userInfo.setState(i);
+
+        if (userInfoService.regist(userInfo)) {
+            System.out.println("succes");
+            return userInfo;
+        } else {
+            System.out.println("failture");
+            return userInfo;
+        }
+
+    }
+
+
 
 }
