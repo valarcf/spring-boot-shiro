@@ -29,4 +29,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
         return sb.toString();
     }
+    @Override
+    public UserInfo findByUsername(String username){
+        return userInfoDao.find(username);
+    }
 }

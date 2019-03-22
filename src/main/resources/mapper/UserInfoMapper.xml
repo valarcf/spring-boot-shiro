@@ -3,9 +3,13 @@
 
 <mapper namespace="com.neo.dao.UserInfoDao">
 
-    <select id="get" resultType="com.neo.dao.UserInfoDao">
+    <select id="get" resultType="com.neo.dao.UserInfo">
 		select `uid`,`username`,`name`,`password`,`salt`,`status` from user_Info where uid = #{value}
 	</select>
+
+    <select id="find" resultType="com.neo.dao.UserInfo">
+        select `uid`,`username`,`name`,`password`,`salt`,`status` from user_Info where username = #{value}
+    </select>
 
     <insert id="save" parameterType="com.neo.dao.UserInfoDao" useGeneratedKeys="true" keyProperty="userId">
 		insert into user_Info

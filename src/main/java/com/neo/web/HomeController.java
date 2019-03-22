@@ -63,7 +63,6 @@ public class HomeController {
         userInfo.setSalt(userInfoService.getRandomString(20));
         byte i = 1;
 		userInfo.setState(i);
-
         if (userInfoService.regist(userInfo)) {
             System.out.println("succes");
             return userInfo;
