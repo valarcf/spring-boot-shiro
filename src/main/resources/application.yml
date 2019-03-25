@@ -6,21 +6,10 @@ spring:
       #schema: database/import.sql
       #sql-script-encoding: utf-8
       driver-class-name: com.mysql.cj.jdbc.Driver
-
-    jpa:
-      database: mysql
-      show-sql: true
-      hibernate:
-        ddl-auto: update
-      properties:
-         hibernate:
-            dialect: org.hibernate.dialect.MySQL5Dialect
-
     thymeleaf:
        cache: false
        mode: LEGACYHTML5
+
 mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-  mapper-locations: mapper/*Mapper.xml
-  typeAliasesPackage: com.neo.model
+    mapper-locations: classpath:mapper/mapper/*.xml
+    type-aliases-package: com.neo.model

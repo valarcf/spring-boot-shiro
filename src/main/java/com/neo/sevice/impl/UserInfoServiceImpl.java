@@ -16,8 +16,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     public boolean regist(UserInfo userInfo){
         return true;
     }
-
-
     private static String string = "abcdefghijklmnopqrstuvwxyz";
 
     @Override
